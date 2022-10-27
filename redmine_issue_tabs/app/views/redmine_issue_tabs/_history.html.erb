@@ -1,0 +1,50 @@
+<%
+  tab ||= {}
+  issue ||= tab[:issue] || nil
+  reply_links = issue.try(:notes_addable?)
+  journals ||= tab[:journals] || []
+  prefix ||= tab[:prefix] || 'note'
+  show_details ||= tab[:show_details] || false
+  index = User.current.wants_comments_in_reverse_order? ? journals.size : 1
+  inc_dec = User.current.wants_comments_in_reverse_order? ? -1 : 1
+%>
+
+<% journals.each do |journal| %>
+  <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
+    <div id="<%= prefix %>-<%= index %>">
+      <div class="contextual">
+        <span class="journal-actions"><%= render_journal_actions(issue, journal, reply_links: reply_links) unless prefix == 'history'%></span>
+        <a href="#<%= prefix %>-<%= index %>" class="journal-link">#<%= index %></a>
+      </div>
+
+      <h4>
+        <%= avatar(journal.user, size: '24') %>
+        <%= authoring journal.created_on, journal.user, label: :label_updated_time_by %>
+        <%= render_private_notes_indicator(journal) %>
+      </h4>
+
+      <% details = show_details ? journal.visible_details : journal.rit_journal_attachments %>
+
+      <% if details.any? %>
+        <ul class="details">
+          <% details_to_strings(details).each do |string| %>
+            <li><%= string %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <% if Setting.thumbnails_enabled? && (thumbnail_attachments = journal_thumbnail_attachments(journal)).any? %>
+        <div class="thumbnails">
+          <% thumbnail_attachments.each do |attachment| %>
+            <div><%= thumbnail_tag(attachment) %></div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= render_notes(issue, journal, reply_links: reply_links) unless journal.notes.blank? %>
+    </div>
+  </div>
+  <%= call_hook(:view_issues_history_journal_bottom, { journal: journal }) %>
+  <% index += inc_dec %>
+<% end %>
+
+<% heads_for_wiki_formatter if User.current.allowed_to?(:edit_issue_notes, issue.project) || User.current.allowed_to?(:edit_own_issue_notes, issue.project) %>

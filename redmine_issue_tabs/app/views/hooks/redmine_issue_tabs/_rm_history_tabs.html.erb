@@ -1,0 +1,25 @@
+<% content_for :header_tags do%>
+  <%= stylesheet_link_tag('issue_history_tabs.css', :plugin => :redmine_issue_tabs) %>
+  <%= javascript_include_tag('issue-history-tabs.js', :plugin => :redmine_issue_tabs) %>
+<% end %>
+
+<% heads_for_wiki_formatter if User.current.allowed_to?(:edit_issue_notes, @issue.project) || User.current.allowed_to?(:edit_own_issue_notes, @issue.project) %>
+
+<div id="history_tabs">
+  <%
+    issue_tabs = []
+    issue_tabs << { name: 'comments', partial: 'redmine_issue_tabs/history', label: :label_issues_tab_comments, issue: @issue, journals: @comments } if @comments.present?
+    issue_tabs << { name: 'changesets', partial: 'redmine_issue_tabs/blank', label: :label_associated_revisions }
+
+    if User.current.allowed_to?(:view_time_entries, @project)
+      issue_tabs << { name: 'timelog', partial: 'redmine_issue_tabs/timelog', label: :label_spent_time }
+    end
+  %>
+  <%= render_tabs issue_tabs %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    RMPlus.TABS.add_new_tab('history', '<%= url_for({ controller: :issues, action: :rit_history, id: @issue.id }).html_safe %>', '<%= l(:label_issues_tab_history) %>', undefined, '#tab-comments');
+  });
+</script>

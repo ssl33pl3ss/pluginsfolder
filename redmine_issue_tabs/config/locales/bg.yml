@@ -1,0 +1,7 @@
+# Bulgarian strings go here for Rails i18n
+bg:
+  label_issues_tab_history: "История"
+  label_issues_tab_comments: "Коментари"
+  label_type_activity: 'Вид дейност'
+  label_istab_spent_hours: 'Употребено време'
+  label_istab_employee: 'Потребител'

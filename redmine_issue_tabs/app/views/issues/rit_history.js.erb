@@ -1,0 +1,9 @@
+$('#history_tabs #tab-content-history').html('<%= escape_javascript(render(partial: 'redmine_issue_tabs/history', locals: { issue: @issue, journals: @journals, prefix: 'history', show_details: true })) %>');
+
+if (RMPlus.LB) {
+  RMPlus.LB.format_journal_with_luxury_buttons('#tab-content-history');
+}
+
+if (RMPlus.Usability) {
+  RMPlus.Usability.collapse_changes_for_history();
+}
