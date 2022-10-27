@@ -1,0 +1,45 @@
+Running RubyEncoder 
+
+RubyEncoder is a command line executable file named 'rubyencoder'. You may
+find it in the RubyEncoder installation directory in the /bin subdirectory. 
+In your terminal change the current directory to the RubyEncoder installation
+directory and type bin/rubyencoder to run the encoder.
+
+First run 
+
+You need to read and accept the RubyEncoder license during the first run of
+the encoder. The License will only be displayed on the first run. Please read
+it, press the Enter/Return key for the next page, and finally if you agree
+with the license, type "I AGREE" and press the Enter/Return key on the last
+page when asked. It is a requirement that you need to accept the license terms
+in order to continue. 
+
+If the RubyEncoder license is accepted you will receive a web link to our site
+and a hexadecimal registration code on the screen. You need to visit the
+following URL: http://www.rubyencoder.com/ and login using the username and
+password we provided to the specified email account provided during your
+download or purchase. If the username and password are correct you will be
+logged into the "My Account" area. 
+
+Once you have entered the system, select the hexadecimal registration code
+that was displayed earlier by the RubyEncoder application. Copy and paste this
+into the corresponding field of the "My Account" area on our site ("Enter
+registration key") in the "Available Licenses" section. When you have have
+done the above, Click on "Create License" and this will generate a license.
+Download will start automatically. If it does not start then click on the
+"Download" link in the "Available licenses" section. 
+
+Save the license (encode.lic) file that is created and copy it into the
+command line encoder installation directory into bin/ subdirectory. 
+
+Usage
+
+Run the bin/rubyencoder executable without parameters to get the list of all
+available options. Please refer to the user manual for details on using the
+encoder. RubyEncoder user manual is included to the installation package.
+Please find it in the RubyEncoder installation directory or download from our
+site: http://rubyencoder.com/support/files/User_Manual.pdf
+
+RubyEncoder site:   http://www.rubyencoder.com
+Support:            support@rubyencoder.com
+
