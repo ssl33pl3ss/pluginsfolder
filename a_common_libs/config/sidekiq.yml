@@ -1,0 +1,27 @@
+production:
+  redis:
+    host: '127.0.0.1'
+    port: '6379'
+    db: 2
+  options:
+    concurrency: 16
+    poll_interval: 10
+    average_scheduled_poll_interval: 5
+    logfile: ./log/production.sidekiq.log
+    queues:
+      - cronjob
+
+development:
+  redis:
+    host: '127.0.0.1'
+    port: '6379'
+    db: 2
+  options:
+    concurrency: 4
+    poll_interval: 10
+    average_scheduled_poll_interval: 5
+    logfile: ./log/development.sidekiq.log
+    verbose: true
+    queues:
+      - default
+      - cronjob

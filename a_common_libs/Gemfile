@@ -1,0 +1,4 @@
+gem 'activerecord-session_store'
+gem 'redis'
+gem 'sidekiq'
+gem 'sidekiq-cron'
